@@ -7,4 +7,4 @@ Our submission for the 1 Bit Game Jam\
 
 ### **Theme**: Yet to be determined
 
-[Planning](./Planning.MD)
+[This is where our plans are](./Planning.MD)
