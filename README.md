@@ -7,4 +7,7 @@ Our submission for the 1 Bit Game Jam\
 
 ### **Theme**: Yet to be determined
 
+> ![IMPORTANT]\
+> Only 2 colors. Ideally black and white 
+
 [This is where our plans are](./Planning.MD)
