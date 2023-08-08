@@ -10,4 +10,4 @@ Our submission for the 1 Bit Game Jam\
 > [!IMPORTANT]\
 > Only 2 colors. Ideally black and white 
 
-[This is where our plans are](./Planning.MD)
+[This is where our plans are](./PLANNING.MD)
