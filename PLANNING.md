@@ -1,6 +1,11 @@
 > [!WARNING]
  > # I HAVE NO IDEA
 ## Maybe 14385 has one
+
+We have to do light and dark
+definitiely 2D
+
+but other than that I dont know
 <br>
 <br>
 <br>
