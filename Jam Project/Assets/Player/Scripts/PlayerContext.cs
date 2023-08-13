@@ -8,10 +8,13 @@ public class PlayerContext : MonoBehaviour
     //private properties
     [SerializeField] private float _speed;
 
-    [SerializeField] private float _debugLeft;
-    [SerializeField] private float _debugRight;
-
     private PlayerControls _input;
+    private Rigidbody2D _rb2D;
+
+    //public properties, getters and setters
+    public static PlayerContext Instance {get; private set;}
+
+    public bool IsGrounded {get; set;}
     //Methods
     void OnEnable()
     {
@@ -23,22 +26,27 @@ public class PlayerContext : MonoBehaviour
     }
     void Awake()
     {
+        if(Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
         _input = new PlayerControls();
-
-        _input.main.Left.performed += ctx => Debug.Log("hello");
+        _rb2D = GetComponent<Rigidbody2D>();
     }
     void Start()
     {
-        
     }
-
     void Update()
     {
         HandleMovement();
     }
     void HandleMovement()
     {
-        _debugLeft = _input.main.Left.ReadValue<float>();
-        _debugRight = _input.main.Right.ReadValue<float>();
+        float left = _input.main.Left.ReadValue<float>();
+        float right = _input.main.Right.ReadValue<float>();
+
+        Vector2 move = new Vector2(right - left, 0) * _speed;
+
+        _rb2D.position += move * Time.deltaTime;
     }
 }
