@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class PlayerHandleGrounded : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D c)
+    //Private Properties
+    private BoxCollider2D _bc2D;
+    //Private Methods
+    void Awake()
     {
-        if(c)
+        _bc2D = GetComponent<BoxCollider2D>();
+    }
+    void Update()
+    {
+        PlayerContext.Instance.IsGrounded = _bc2D.IsTouchingLayers(1);
     }
 }
