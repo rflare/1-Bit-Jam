@@ -5,7 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerContext : MonoBehaviour
 {
+    //Constants
+    public static readonly Vector3 RIGHT_DIR = new Vector3(-1, 1, 1);
+    public static readonly Vector3 LEFT_DIR = new Vector3(1, 1, 1);
     //private properties
+    List<IPlayerAttackObserver> _attackObservers = new List<IPlayerAttackObserver>();
+
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
 
@@ -34,6 +39,7 @@ public class PlayerContext : MonoBehaviour
     }
     void Awake()
     {
+        Debug.Log("Boo");
         if(Instance != null && Instance != this)
         {
             Destroy(this);
@@ -57,6 +63,7 @@ public class PlayerContext : MonoBehaviour
         CurrentState.Update(this);
         CurrentState.CheckSwitchStates(this);
     }
+
     //Public Methods
     public void HandleMovement()
     {
@@ -79,7 +86,18 @@ public class PlayerContext : MonoBehaviour
     }
     public void HandleBite()
     {
-        if (_input.main.Attack1.triggered) Debug.Log("Chomp!!!");
+        if (_input.main.Attack1.triggered)
+        {
+            foreach(var observer in _attackObservers)
+            {
+                observer.NotifyAttack();
+            }
+        }
+    }
+    public void HandleDirection()
+    {
+        if (_input.main.Left.triggered) transform.localScale = LEFT_DIR;
+        if (_input.main.Right.triggered) transform.localScale = RIGHT_DIR;
     }
     public bool IsTouchingBlack()
     {
@@ -92,5 +110,14 @@ public class PlayerContext : MonoBehaviour
     public void ChangeSprite(Sprite s)
     {
         _spriteRenderer.sprite = s;
+    }
+
+    public void AddAttackObserver(IPlayerAttackObserver observer)
+    {
+        _attackObservers.Add(observer);
+    }
+    public void RemoveAttackObserver(IPlayerAttackObserver observer)
+    {
+        _attackObservers.Remove(observer);
     }
 }

@@ -4,7 +4,6 @@ public class PlayerDarkState : PlayerBaseState
 {
     public override void Start(PlayerContext player)
     {
-        Debug.Log("Entered Dark State");
         player.ChangeSprite(player.DarkSprite);
     }
 
@@ -12,10 +11,11 @@ public class PlayerDarkState : PlayerBaseState
     {
         player.HandleMovement();
         if(player.IsGrounded) player.HandleJump();
+        player.HandleDirection();
     }
     public override void Stop(PlayerContext player)
     {
-        Debug.Log("Exited Dark State");
+
     }
 
     public override void CheckSwitchStates(PlayerContext player)
