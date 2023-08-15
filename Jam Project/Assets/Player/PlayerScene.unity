@@ -2875,6 +2875,23 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
+--- !u!1 &2125308174 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2125308174, guid: b051fa14e2028904ea7f4674d610af09, type: 3}
+  m_PrefabInstance: {fileID: 2563421894870806227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2125308178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125308174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d242e3f86bdf5843b52583a0b28760f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2563421894870806227
 PrefabInstance:
   m_ObjectHideFlags: 0

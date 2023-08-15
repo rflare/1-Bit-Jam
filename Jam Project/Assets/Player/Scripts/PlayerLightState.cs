@@ -4,7 +4,6 @@ public class PlayerLightState : PlayerBaseState
 {
     public override void Start(PlayerContext player)
     {
-        Debug.Log("Entered Light State");
         player.ChangeSprite(player.LightSprite);
     }
 
@@ -12,10 +11,11 @@ public class PlayerLightState : PlayerBaseState
     {
         player.HandleMovement();
         player.HandleBite();
+        player.HandleDirection();
     }
     public override void Stop(PlayerContext player)
     {
-        Debug.Log("Exited Light State");
+
     }
 
     public override void CheckSwitchStates(PlayerContext player)
