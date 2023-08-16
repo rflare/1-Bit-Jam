@@ -9,7 +9,7 @@ public class PlayerContext : MonoBehaviour
     public static readonly Vector3 RIGHT_DIR = new Vector3(-1, 1, 1);
     public static readonly Vector3 LEFT_DIR = new Vector3(1, 1, 1);
     //private properties
-    List<IPlayerAttackObserver> _attackObservers = new List<IPlayerAttackObserver>();
+    List<PlayerAttackObserver> _attackObservers = new List<PlayerAttackObserver>();
 
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
@@ -39,7 +39,6 @@ public class PlayerContext : MonoBehaviour
     }
     void Awake()
     {
-        Debug.Log("Boo");
         if(Instance != null && Instance != this)
         {
             Destroy(this);
@@ -112,11 +111,11 @@ public class PlayerContext : MonoBehaviour
         _spriteRenderer.sprite = s;
     }
 
-    public void AddAttackObserver(IPlayerAttackObserver observer)
+    public void AddAttackObserver(PlayerAttackObserver observer)
     {
         _attackObservers.Add(observer);
     }
-    public void RemoveAttackObserver(IPlayerAttackObserver observer)
+    public void RemoveAttackObserver(PlayerAttackObserver observer)
     {
         _attackObservers.Remove(observer);
     }
