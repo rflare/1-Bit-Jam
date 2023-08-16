@@ -2,15 +2,7 @@
  > # I HAVE NO IDEA
 ## Maybe 14385 has one
 
-We have to do light and dark
-definitiely 2D
-
-but other than that I dont know
-<br>
-<br>
-<br>
-<br>
-<br>
+Currently we are almost done basic features, now we have to implement enemies
 
 # Before any coding:
 **Naming Conventions**
