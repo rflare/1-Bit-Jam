@@ -1,22 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class PlayerAttackEffect : MonoBehaviour, IPlayerAttackObserver
+public class PlayerAttackEffect : PlayerAttackObserver
 {
     //private properties
     Animator _anim;
 
     //Private Methods
-
-    void OnEnable()
-    {
-        StartCoroutine(AddAttackObserver());
-    }
-
-    void OnDisable()
-    {
-        PlayerContext.Instance.RemoveAttackObserver(this);
-    }
 
     void Awake()
     {
@@ -27,21 +17,9 @@ public class PlayerAttackEffect : MonoBehaviour, IPlayerAttackObserver
 
     }
 
-    public void NotifyAttack()
+    public override void NotifyAttack()
     {
         _anim.SetTrigger("Attack");
     }
 
-    IEnumerator AddAttackObserver()
-    {
-        for (; ; )
-        {
-            if (PlayerContext.Instance == null)
-            {
-                yield return null;
-            }
-            else break;
-        }
-        PlayerContext.Instance.AddAttackObserver(this);
-    }
 }
