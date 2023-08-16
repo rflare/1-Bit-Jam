@@ -9,7 +9,7 @@ public class PlayerContext : MonoBehaviour
     public static readonly Vector3 RIGHT_DIR = new Vector3(-1, 1, 1);
     public static readonly Vector3 LEFT_DIR = new Vector3(1, 1, 1);
     //private properties
-    List<IPlayerAttackObserver> _attackObservers = new List<IPlayerAttackObserver>();
+    List<PlayerAttackObserver> _attackObservers = new List<PlayerAttackObserver>();
 
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
@@ -28,6 +28,7 @@ public class PlayerContext : MonoBehaviour
     [field: SerializeField] public bool IsGrounded {get; set;}
     [field: SerializeField] public Sprite LightSprite {get; private set;}
     [field: SerializeField] public Sprite DarkSprite {get; private set;}
+    public Collider2D C2D { get { return _c2D; } }
     //Private Methods
     void OnEnable()
     {
@@ -39,7 +40,6 @@ public class PlayerContext : MonoBehaviour
     }
     void Awake()
     {
-        Debug.Log("Boo");
         if(Instance != null && Instance != this)
         {
             Destroy(this);
@@ -99,6 +99,11 @@ public class PlayerContext : MonoBehaviour
         if (_input.main.Left.triggered) transform.localScale = LEFT_DIR;
         if (_input.main.Right.triggered) transform.localScale = RIGHT_DIR;
     }
+    public void Damage(Vector2 a)
+    {
+        Vector2 n = ((Vector2) transform.position - a).normalized * 3f;
+        _rb2D.AddForce(n, ForceMode2D.Impulse);
+    }
     public bool IsTouchingBlack()
     {
         return _c2D.IsTouchingLayers(64);
@@ -112,11 +117,11 @@ public class PlayerContext : MonoBehaviour
         _spriteRenderer.sprite = s;
     }
 
-    public void AddAttackObserver(IPlayerAttackObserver observer)
+    public void AddAttackObserver(PlayerAttackObserver observer)
     {
         _attackObservers.Add(observer);
     }
-    public void RemoveAttackObserver(IPlayerAttackObserver observer)
+    public void RemoveAttackObserver(PlayerAttackObserver observer)
     {
         _attackObservers.Remove(observer);
     }
