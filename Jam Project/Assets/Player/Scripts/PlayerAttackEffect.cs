@@ -8,7 +8,6 @@ public class PlayerAttackEffect : PlayerAttackObserver
 
     //Private Methods
 
-
     void Awake()
     {
         _anim = GetComponent<Animator>();
