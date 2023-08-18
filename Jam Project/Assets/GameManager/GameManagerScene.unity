@@ -197,6 +197,18 @@ PrefabInstance:
       propertyPath: orthographic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2380483433428724180, guid: 0ebeab58396fd9e458be2e29da282f22, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380483433428724180, guid: 0ebeab58396fd9e458be2e29da282f22, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380483433428724180, guid: 0ebeab58396fd9e458be2e29da282f22, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7657653517129928624, guid: 0ebeab58396fd9e458be2e29da282f22, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -247,20 +259,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ebeab58396fd9e458be2e29da282f22, type: 3}
---- !u!1 &590329866 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2951245739647652317, guid: 0ebeab58396fd9e458be2e29da282f22, type: 3}
-  m_PrefabInstance: {fileID: 590329865}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &590329867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590329866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d585b6d811e4c84595972144bba13a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

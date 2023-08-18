@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 3
+  serializedVersion: 2
   tags:
   - BlackArea
   - WhiteArea
@@ -47,9 +47,12 @@ TagManager:
   - name: BlackAndWhite
     uniqueID: 3563200957
     locked: 0
-  - name: Player
-    uniqueID: 2255652819
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Weapons
+    uniqueID: 327893083
+    locked: 0
+  - name: Player
+    uniqueID: 2255652819
     locked: 0

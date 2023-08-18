@@ -5,15 +5,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerContext : MonoBehaviour
 {
-    //Constants
-    public static readonly Vector3 RIGHT_DIR = new Vector3(-1, 1, 1);
-    public static readonly Vector3 LEFT_DIR = new Vector3(1, 1, 1);
     //private properties
     List<PlayerAttackObserver> _attackObservers = new List<PlayerAttackObserver>();
 
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpForce;
+    [SerializeField] float _health;
 
+    private Vector2 move;
 
     private PlayerControls _input;
     private Rigidbody2D _rb2D;
@@ -24,6 +23,8 @@ public class PlayerContext : MonoBehaviour
     //public properties, getters and setters
     public PlayerBaseState CurrentState;
     public static PlayerContext Instance {get; private set;}
+
+    public Vector2 Move { get { return move; } }
 
     [field: SerializeField] public bool IsGrounded {get; set;}
     [field: SerializeField] public Sprite LightSprite {get; private set;}
@@ -60,6 +61,10 @@ public class PlayerContext : MonoBehaviour
     }
     void Update()
     {
+        if(_health <= 0)
+        {
+            GameManager.Instance.HeDied();
+        }
         CurrentState.Update(this);
         CurrentState.CheckSwitchStates(this);
     }
@@ -70,7 +75,7 @@ public class PlayerContext : MonoBehaviour
         float left = _input.main.Left.ReadValue<float>();
         float right = _input.main.Right.ReadValue<float>();
 
-        Vector2 move = new Vector2(right - left, 0) * _speed;
+        move = new Vector2(right - left, 0) * _speed;
 
         _rb2D.position += move * Time.deltaTime;
     }
@@ -81,7 +86,7 @@ public class PlayerContext : MonoBehaviour
             float gravity = Physics2D.gravity.y * _rb2D.gravityScale;
             float forceUp = Mathf.Sqrt(-2f * _jumpForce * gravity);
 
-            _rb2D.AddForce(Vector2.up * forceUp, ForceMode2D.Impulse);
+            _rb2D.AddForce(Vector2.up * forceUp * _rb2D.mass, ForceMode2D.Impulse);
         }
     }
     public void HandleBite()
@@ -96,13 +101,16 @@ public class PlayerContext : MonoBehaviour
     }
     public void HandleDirection()
     {
-        if (_input.main.Left.triggered) transform.localScale = LEFT_DIR;
-        if (_input.main.Right.triggered) transform.localScale = RIGHT_DIR;
+        if (_input.main.Left.triggered) transform.localScale = Utils.LEFT_DIR;
+        if (_input.main.Right.triggered) transform.localScale = Utils.RIGHT_DIR;
     }
     public void Damage(Vector2 a)
     {
         Vector2 n = ((Vector2) transform.position - a).normalized * 3f;
         _rb2D.AddForce(n, ForceMode2D.Impulse);
+
+
+        _health -= 1f;
     }
     public bool IsTouchingBlack()
     {
